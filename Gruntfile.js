@@ -7,7 +7,7 @@ module.exports = function (grunt) {
     // Automatically load required Grunt tasks
     require('jit-grunt')(grunt, {
         useminPrepare: 'grunt-usemin'
-      });
+    });
 
     // Define the configuration for all the tasks
     grunt.initConfig({
@@ -15,31 +15,13 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'css/styles.css': 'css/styles.scss'
-                }   
+                }
             }
         },
         watch: {
             files: 'css/*.scss',
             tasks: ['sass']
         },
-        browserSync: {
-            dev: {
-                bsFiles: {
-                    src : [
-                        'css/*.css',
-                        '*.html',
-                        'js/*.js'
-                    ]
-                },
-                options: {
-                    watchTask: true,
-                    server: {
-                        baseDir: "./"
-                    }
-                }
-            }
-        },
-
         copy: {
             html: {
                 files: [
@@ -64,10 +46,26 @@ module.exports = function (grunt) {
                 }]
             }
         },
-
         clean: {
             build: {
                 src: [ 'dist/']
+            }
+        },
+        browserSync: {
+            dev: {
+                bsFiles: {
+                    src : [
+                        'css/*.css',
+                        '*.html',
+                        'js/*.js'
+                    ]
+                },
+                options: {
+                    watchTask: true,
+                    server: {
+                        baseDir: "./"
+                    }
+                }
             }
         },
         imagemin: {
@@ -156,19 +154,6 @@ module.exports = function (grunt) {
             options: {
                 assetsDirs: ['dist', 'dist/css','dist/js']
             }
-        },
-
-        htmlmin: {                                         // Task
-            dist: {                                        // Target
-                options: {                                 // Target options
-                    collapseWhitespace: true
-                },
-                files: {                                   // Dictionary of files
-                    'dist/index.html': 'dist/index.html',  // 'destination': 'source'
-                    'dist/contactus.html': 'dist/contactus.html',
-                    'dist/aboutus.html': 'dist/aboutus.html',
-                }
-            }
         }
     });
 
@@ -183,8 +168,6 @@ module.exports = function (grunt) {
         'cssmin',
         'uglify',
         'filerev',
-        'usemin',
-        'htmlmin'
+        'usemin'
     ]);
-
 };
